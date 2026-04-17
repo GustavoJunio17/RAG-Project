@@ -1,0 +1,32 @@
+# === Web API ===
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+
+# === Document Loaders ===
+pymupdf>=1.24.0          # PDF extraction (fitz)
+pdfplumber>=0.11.0       # PDF com tabelas
+python-docx>=1.1.0       # DOCX
+openpyxl>=3.1.0          # Excel .xlsx
+pandas>=2.2.0            # DataFrames
+pyarrow>=17.0.0          # Parquet
+
+# === Chunking & Text Processing ===
+langchain-text-splitters>=0.2.0
+tiktoken>=0.7.0          # Tokenizer p/ contagem precisa
+
+# === Agent & LLM ===
+langgraph>=0.2.0         # Orquestração do agente
+langchain-core>=0.3.0    # Base para tools e messages
+google-genai>=1.0.0      # Google Gemini (padrão)
+openai>=1.40.0           # OpenAI (alternativa)
+
+# === Database & Storage ===
+psycopg[binary]>=3.2.0   # PostgreSQL driver
+pgvector>=0.3.0          # pgvector Python
+duckdb>=1.1.0            # SQL em Parquet
+
+# === Utilities ===
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+uuid7>=0.1.0             # UUIDs ordenáveis por tempo
