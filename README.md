@@ -1,75 +1,87 @@
-# Sofia IA 🤖 — Advanced RAG with LangGraph
+# Sofia AI 🤖 — Advanced RAG with LangGraph
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
   <img src="https://img.shields.io/badge/LangGraph-Latest-orange?style=for-the-badge" alt="LangGraph">
   <img src="https://img.shields.io/badge/Google_Gemini-Powered-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/PostgreSQL-pgvector-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
 ---
 
-**Sofia IA** é um sistema inteligente de Recuperação Aumentada por Geração (RAG) projetado especificamente para gestores. Utilizando a potência do **Google Gemini** e a orquestração cíclica do **LangGraph**, a Sofia é capaz de ingerir documentos complexos e fornecer respostas precisas com contexto em tempo real.
+**Sofia AI** is a state-of-the-art Retrieval-Augmented Generation (RAG) system engineered for high-performance decision support. Leveraging the cognitive power of **Google Gemini** and the sophisticated cyclic orchestration of **LangGraph**, Sofia processes complex documents to deliver precise, context-aware answers in real-time.
 
-## ✨ Destaques
-- **Fluxos Cíclicos**: Orquestração via LangGraph para raciocínio em múltiplas etapas e refinamento de buscas.
-- **Busca Vetorial de Alta Performance**: Integração com `pgvector` no PostgreSQL para recuperação semântica eficiente.
-- **Ingestão Inteligente**: Pipeline escalável para processamento de arquivos PDF e outros documentos com namespaces.
-- **REST API Moderna**: Baseada em FastAPI com documentação automática (Swagger/ReDoc).
-- **Monitoramento Nativo**: Preparado para LangSmith para inspeção profunda de traces e depuração de agentes.
+## ✨ Key Features
 
-## 🏗️ Arquitetura do Sistema
-O projeto é dividido em camadas modulares para facilitar a manutenção e escalabilidade:
+- 🔄 **Cyclic Graph Orchestration**: Utilizing LangGraph for multi-step reasoning, self-correction, and iterative search refinement.
+- ⚡ **High-Performance Vector Search**: Seamless integration with `pgvector` on PostgreSQL for ultra-fast semantic retrieval.
+- 📂 **Intelligent Document Ingestion**: Scalable pipeline for processing PDF, DOCX, and Excel files with automated chunking and namespace isolation.
+- 🚀 **Modern REST API**: Built on FastAPI with high concurrency support and auto-generated OpenAPI documentation.
+- 🕵️ **Native Observability**: Ready for LangSmith integration to provide deep trace inspection and agent debugging.
 
-1.  **Agent Layer (`agent/`)**: Define o grafo de controle, estados e lógica de decisão do assistente.
-2.  **Core Layer (`core/`)**: Clientes LLM (Gemini), gerenciamento de prompts e configurações globais.
-3.  **Ingestion Layer (`ingestion/`)**: Processamento e fragmentação (chunking) de documentos para o banco vetorial.
-4.  **API Layer (`api/`)**: Interface REST para interação em tempo real e upload de dados.
-5.  **Storage Layer (`storage/` & `db/`)**: Gerenciamento de persistência vetorial e estruturada.
+## 🏗️ System Architecture
 
-## 🚀 Como Iniciar
+The project follows a modular, layer-based architecture designed for scalability and maintainability:
 
-### 1. Pré-requisitos
-- Docker & Docker Compose
-- Python 3.10+
+1.  **Agent Layer (`agent/`)**: Orchestrates the control flow, state management, and agentic decision logic.
+2.  **Core Layer (`core/`)**: Houses LLM clients (Gemini/OpenAI), prompt templates, and global configurations.
+3.  **Ingestion Layer (`ingestion/`)**: Manages the data pipeline—processing, chunking, and indexing documents into the vector store.
+4.  **API Layer (`api/`)**: Provides a robust REST interface for real-time interaction and data management.
+5.  **Storage Layer (`db/` & `storage/`)**: Handles persistence for both structured data and high-dimensional vector embeddings.
 
-### 2. Infraestrutura
-Inicie o banco de dados com suporte a vetores:
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- **Docker & Docker Compose**
+- **Python 3.10+**
+- **Google Gemini API Key** (or OpenAI)
+
+### 2. Spin Up Infrastructure
+Launch the PostgreSQL database with `pgvector` support:
 ```bash
 docker-compose up -d
 ```
 
-### 3. Configuração do Ambiente
-Crie seu ambiente virtual e instale as dependências:
+### 3. Environment Setup
+Initialize your virtual environment and install dependencies:
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # No Windows: .venv\Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Variáveis de Ambiente
-Copie o template e preencha com suas credenciais:
+### 4. Configuration
+Clone the environment template and configure your credentials:
 ```bash
 cp .env.example .env
 ```
 > [!IMPORTANT]
-> Certifique-se de adicionar sua `GEMINI_API_KEY` no arquivo `.env`.
+> Ensure you set your `GEMINI_API_KEY` in the `.env` file for core functionality.
 
-### 5. Execução
-**Inicie a API:**
+### 5. Running the Application
+**Start the FastAPI Server:**
 ```bash
 uvicorn main:app --reload --port 8000
 ```
-Acesse a documentação interativa em: `http://localhost:8000/docs`
+Interactive documentation will be available at: `http://localhost:8000/docs`
 
-**Ingestão Manual:**
+**Manual Ingestion Example:**
 ```bash
-python ingestion/pipeline.py --file "dados/seu-documento.pdf" --namespace "prospeccao"
+python ingestion/pipeline.py --file "data/manual.pdf" --namespace "default"
 ```
 
-## 📜 Licença
-Este projeto está sob a licença [MIT](LICENSE).
+## 🛠️ Tech Stack
+
+- **Orchestration**: LangGraph, LangChain
+- **LLM**: Google Gemini (Default), OpenAI (Optional)
+- **Database**: PostgreSQL + pgvector
+- **API**: FastAPI, Pydantic
+- **Processing**: PyMuPDF, Pandas, Tiktoken
+
+## 📜 License
+This project is licensed under the [MIT License](LICENSE).
 
 ---
-<p align="center">Desenvolvido com ❤️ por <a href="https://github.com/GustavoJunio17">Gustavo Junio</a></p>
+<p align="center">Crafted with ❤️ by <a href="https://github.com/GustavoJunio17">Gustavo Junio</a></p>
