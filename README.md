@@ -83,5 +83,3 @@ python ingestion/pipeline.py --file "data/manual.pdf" --namespace "default"
 ## 📜 License
 This project is licensed under the [MIT License](LICENSE).
 
----
-<p align="center">Crafted with ❤️ by <a href="https://github.com/GustavoJunio17">Gustavo Junio</a></p>
